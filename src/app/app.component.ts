@@ -9,25 +9,34 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 export class AppComponent implements OnInit{
   form: FormGroup;
-  getCipher: string;
-  chipers: string[] = ['rot', 'gronsfeld'];
+  getCipher: string = 'rot';
+  ciphers: string[] = ['rot', 'gronsfeld'];
+  action: string;
 
-    ngOnInit() {
+  ngOnInit() {
     this.form = new FormGroup({
       input: new FormControl('', Validators.required),
-      key: new FormControl('', Validators.required),
+      key: new FormControl('', [
+        Validators.required,
+        Validators.pattern("^[0-9]*$")
+      ]),
     });
   }
 
   encrypt() {
-
+    this.action = "encrypt"
   }
 
   decrypt() {
-
+    this.action = "decrypt"
   }
 
   onSubmit() {
-
+    if(this.form.valid) {
+      console.log('Form: ', this.form);
+      const formData = { ...this.form.value };
+      console.log('Form Data: ', formData);
+      console.log(this.action);
+    }
   }
 }
