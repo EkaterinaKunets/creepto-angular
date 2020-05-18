@@ -11,8 +11,12 @@
       <mat-error *ngIf="form.get('key').errors?.required">This input must be filled</mat-error>
       <mat-error *ngIf="form.get('key').errors?.pattern">This input must be number</mat-error>
     </mat-form-field>
-    <mat-radio-group [(ngModel)]="getCipher">
-      <mat-radio-button *ngFor="let cipher of ciphers" [value]="cipher">{{ cipher }}</mat-radio-button>
+<!--    <mat-radio-group>-->
+<!--      <mat-radio-button *ngFor="let cipher of ciphers" [value]="cipher">{{ cipher }}</mat-radio-button>-->
+<!--    </mat-radio-group>-->
+    <mat-radio-group>
+      <mat-radio-button value="gronsfeld" formControlName="gronsfeld">Gronsfeld</mat-radio-button>
+      <mat-radio-button value="rot" formControlName="rot" checked>Rot</mat-radio-button>
     </mat-radio-group>
     <div>{{ getCipher }}</div>
     <div class="btn-container">

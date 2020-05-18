@@ -20,6 +20,8 @@ export class AppComponent implements OnInit{
         Validators.required,
         Validators.pattern("^[0-9]*$")
       ]),
+      gronsfeld: new FormControl(),
+      rot: new FormControl()
     });
   }
 
