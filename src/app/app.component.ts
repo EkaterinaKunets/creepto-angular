@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { getResponse } from './app.service';
-import { tap } from 'rxjs/operators';
+import {tap} from "rxjs/operators";
 
 @Component({
   selector: 'app-root',
@@ -44,7 +44,9 @@ export class AppComponent implements OnInit{
       this.cipher = formData.cipher;
       this.key = formData.key;
       this.text = formData.input;
-      this.getResponse.returnAnswer(this.cipher, this.key, this.text, this.action).subscribe()
+      this.getResponse.returnAnswer(this.cipher, this.key, this.text, this.action).pipe(
+        tap(x => {console.log(x)})
+      ).subscribe()
     }
   }
 }
