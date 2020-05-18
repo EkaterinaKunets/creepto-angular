@@ -1,5 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { getResponse } from './app.service';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -9,9 +11,13 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 export class AppComponent implements OnInit{
   form: FormGroup;
-  getCipher: string = 'rot';
   ciphers: string[] = ['rot', 'gronsfeld'];
   action: string;
+  cipher: string;
+  key: number;
+  text: string;
+
+  constructor(private getResponse: getResponse) {}
 
   ngOnInit() {
     this.form = new FormGroup({
@@ -33,11 +39,12 @@ export class AppComponent implements OnInit{
   }
 
   onSubmit() {
-    if(this.form.valid) {
-      console.log('Form: ', this.form);
+    if (this.form.valid) {
       const formData = { ...this.form.value };
-      console.log('Form Data: ', formData);
-      console.log(this.action);
+      this.cipher = formData.cipher;
+      this.key = formData.key;
+      this.text = formData.input;
+      this.getResponse.returnAnswer(this.cipher, this.key, this.text, this.action).subscribe()
     }
   }
 }

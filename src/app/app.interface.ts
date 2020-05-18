@@ -1,6 +1,6 @@
 export interface AppInterface {
-  chiper: string
-  key: string
+  cipher: string
+  key: number
   inputText: string
   action: string
 }

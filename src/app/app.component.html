@@ -15,13 +15,9 @@
 <!--      <mat-radio-button *ngFor="let cipher of ciphers" [value]="cipher">{{ cipher }}</mat-radio-button>-->
 <!--    </mat-radio-group>-->
     <!-- <mat-radio-group> -->
-      <!-- <mat-radio-button value="gronsfeld" formControlName="gronsfeld">Gronsfeld</mat-radio-button>
-      <mat-radio-button value="rot" formControlName="rot" checked>Rot</mat-radio-button> -->
-    <!-- </mat-radio-group> -->
-    <!-- <div>{{ getCipher }}</div> -->
-    <ng-container *ngFor="let c of ciphers">
-      <label> {{ c }} </label>
-      <input type="radio"[value]="c" formControlName="cipher">
+    <ng-container *ngFor="let cipher of ciphers">
+      <label [for]="cipher"> {{ cipher }} </label>
+      <input type="radio" [value]="cipher" formControlName="cipher">
     </ng-container>
     <div class="btn-container">
       <button mat-raised-button color="primary" (click)="encrypt()">Encrypt</button>
@@ -31,7 +27,4 @@
   <div class="inner">
     <h3 id="result">Here is result</h3>
   </div>
-  <pre>
-    {{ form.value | json }}
-  </pre>
 </div>
