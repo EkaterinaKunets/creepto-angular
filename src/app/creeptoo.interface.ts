@@ -1,4 +1,4 @@
-export interface AppInterface {
+export interface CreeptooInterface {
   result?: any;
   cipher: string;
   key: number;

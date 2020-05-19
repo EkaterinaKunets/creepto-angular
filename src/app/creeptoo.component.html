@@ -19,8 +19,8 @@
           formControlName="cipher"
         >{{ cipher | titlecase }}</mat-radio-button>
       </ng-container>
+      <mat-error *ngIf="form.get('cipher').touched && form.get('cipher').errors?.required">All inputs must be filled</mat-error>
     </mat-radio-group>
-    <mat-error *ngIf="!this.form.valid">All inputs must be filled</mat-error>
     <div class="btn-container">
       <button mat-raised-button color="primary" (click)="encrypt()">Encrypt</button>
       <button mat-raised-button color="accent" (click)="decrypt()">Decrypt</button>

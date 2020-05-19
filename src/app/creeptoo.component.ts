@@ -1,22 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { apiResponse } from './app.service';
-import { AppInterface } from './app.interface';
+import { apiResponse } from './creeptoo.service';
+import { CreeptooInterface } from './creeptoo.interface';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  selector: 'app-creeptoo',
+  templateUrl: './creeptoo.component.html',
+  styleUrls: ['./creeptoo.component.scss']
 })
 
-export class AppComponent implements OnInit {
+export class CreeptooComponent implements OnInit {
   form: FormGroup;
   ciphers: string[] = ['rot', 'gronsfeld'];
   action: string;
   cipher: string;
   key: number;
   text: string;
-  response: AppInterface;
+  response: CreeptooInterface;
 
   constructor(private apiResponse: apiResponse) {}
 
@@ -41,6 +41,9 @@ export class AppComponent implements OnInit {
 
   another() {
     this.form.reset();
+    Object.keys(this.form.controls).forEach(key => {
+      this.form.get(key).setErrors(null);
+    });
   }
 
   onSubmit() {
