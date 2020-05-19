@@ -17,15 +17,20 @@
           [value]="cipher"
           ngDefaultControl
           formControlName="cipher"
-        >{{ cipher }}</mat-radio-button>
+        >{{ cipher | titlecase }}</mat-radio-button>
       </ng-container>
     </mat-radio-group>
+    <mat-error *ngIf="!this.form.valid">All inputs must be filled</mat-error>
     <div class="btn-container">
       <button mat-raised-button color="primary" (click)="encrypt()">Encrypt</button>
       <button mat-raised-button color="accent" (click)="decrypt()">Decrypt</button>
     </div>
    </form>
   <div class="inner">
-    <h3 id="result">Here is result</h3>
+    <h3 *ngIf="!response; else resultBlock">Here will be result</h3>
+    <ng-template #resultBlock>
+      <h3 id="result">Result: {{ response }}</h3>
+      <button mat-raised-button color="accent" (click)="another()">Another one?</button>
+    </ng-template>
   </div>
 </div>
